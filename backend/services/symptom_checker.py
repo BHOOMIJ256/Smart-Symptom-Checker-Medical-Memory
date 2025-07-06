@@ -1,9 +1,5 @@
 import os
-import openai
-try:
-    import google.generativeai as genai
-except ImportError:
-    genai = None
+import google.generativeai as genai
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
@@ -15,25 +11,17 @@ class SymptomCheckerService:
     """Core service for analyzing symptoms using AI models"""
     
     def __init__(self):
-        # Initialize OpenAI only if key is present
-        self.openai_client = None
-        if os.getenv("OPENAI_API_KEY"):
-            self.openai_client = openai.OpenAI(
-                api_key=os.getenv("OPENAI_API_KEY")
-            )
-        
         # Initialize Google Gemini
         self.gemini_model = None
-        if genai and os.getenv("GOOGLE_API_KEY"):
-            try:
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-                self.gemini_model = genai.GenerativeModel('gemini-pro')
-            except Exception as e:
-                print(f"Failed to initialize Gemini: {e}")
+        api_key = os.getenv("GOOGLE_API_KEY")
+        if api_key:
+            genai.configure(api_key=api_key)
+            # Use a supported model name; check the docs or your account for available models
+            self.gemini_model = genai.GenerativeModel('gemini-1.5-flash')  # or 'gemini-1.0-pro', etc.
         
         # Medical knowledge base for symptom-disease mapping
         self.symptom_database = self._load_symptom_database()
-        
+    
     def _load_symptom_database(self) -> Dict[str, Any]:
         """Load medical symptom-disease database"""
         # This would typically load from a comprehensive medical database
@@ -131,12 +119,10 @@ class SymptomCheckerService:
         return context
     
     async def _get_llm_analysis(self, context: str) -> Dict[str, Any]:
-        """Get analysis from LLM (OpenAI or Gemini)"""
+        """Get analysis from LLM (Google Gemini)"""
         try:
-            # Try Gemini first (since user has Gemini API key)
             if self.gemini_model:
                 try:
-                    # Enhanced prompt for Gemini
                     gemini_prompt = f"""
                     You are a medical AI assistant. Analyze the following patient information and provide a structured medical assessment.
 
@@ -155,38 +141,15 @@ class SymptomCheckerService:
                         "disclaimer": "Medical disclaimer text"
                     }}
                     """
-                    
                     response = await asyncio.to_thread(
                         self.gemini_model.generate_content,
                         gemini_prompt
                     )
-                    
                     result_text = response.text or ""
                     return self._parse_llm_response(result_text)
-                    
                 except Exception as gemini_error:
                     print(f"Gemini analysis failed: {gemini_error}")
-                    # Fall back to OpenAI if Gemini fails
-            
-            # Fallback to OpenAI
-            if self.openai_client:
-                response = await asyncio.to_thread(
-                    self.openai_client.chat.completions.create,
-                    model="gpt-4",
-                    messages=[
-                        {"role": "system", "content": "You are a medical AI assistant. Provide accurate, helpful medical information while always including appropriate disclaimers."},
-                        {"role": "user", "content": context}
-                    ],
-                    temperature=0.3,
-                    max_tokens=1000
-                )
-                
-                result_text = response.choices[0].message.content
-                return self._parse_llm_response(result_text)
-            
-            else:
-                raise Exception("No LLM API keys configured")
-                
+            raise Exception("No Gemini API key configured or Gemini model unavailable")
         except Exception as e:
             print(f"LLM analysis failed: {e}")
             return {}

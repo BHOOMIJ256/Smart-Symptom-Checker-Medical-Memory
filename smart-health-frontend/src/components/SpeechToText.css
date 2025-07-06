@@ -1,0 +1,339 @@
+.speech-to-text-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.speech-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e3f2fd;
+}
+
+.speech-header h3 {
+  color: #1976d2;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.speech-header p {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.recording-section {
+  margin-bottom: 30px;
+}
+
+.recording-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.record-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.record-button.start {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.record-button.start:hover:not(:disabled) {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.record-button.stop {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.record-button.stop:hover {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.record-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.audio-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.process-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.process-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.clear-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.clear-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f57c00, #ef6c00);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.audio-preview {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.audio-preview h4 {
+  margin: 0 0 15px 0;
+  color: #495057;
+  font-size: 18px;
+}
+
+.audio-player {
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 4px solid #f44336;
+  font-weight: 500;
+}
+
+.transcription-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.transcription-section h4 {
+  margin: 0 0 15px 0;
+  color: #495057;
+  font-size: 18px;
+}
+
+.transcription-text {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  font-style: italic;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.symptoms-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #e8f5e8;
+  border-radius: 8px;
+  border: 1px solid #c8e6c9;
+}
+
+.symptoms-section h4 {
+  margin: 0 0 20px 0;
+  color: #2e7d32;
+  font-size: 18px;
+}
+
+.duration-info, .severity-info, .symptoms-summary {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+}
+
+.symptoms-by-category {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.symptom-category {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #c8e6c9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-title {
+  margin: 0 0 10px 0;
+  color: #2e7d32;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.symptom-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.symptom-item {
+  color: #388e3c;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.diagnosis-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  border: 1px solid #bbdefb;
+}
+
+.diagnosis-section h4 {
+  margin: 0 0 20px 0;
+  color: #1565c0;
+  font-size: 18px;
+}
+
+.diagnosis-content {
+  display: grid;
+  gap: 20px;
+}
+
+.diagnosis-item {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #bbdefb;
+}
+
+.diagnosis-item strong {
+  color: #1565c0;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.diagnosis-item ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.diagnosis-item li {
+  color: #1976d2;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .speech-to-text-container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .recording-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .record-button, .process-button, .clear-button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .symptoms-by-category {
+    grid-template-columns: 1fr;
+  }
+  
+  .speech-header h3 {
+    font-size: 20px;
+  }
+  
+  .speech-header p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .speech-to-text-container {
+    padding: 10px;
+  }
+  
+  .record-button, .process-button, .clear-button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .transcription-text {
+    font-size: 14px;
+    padding: 10px;
+  }
+} 
