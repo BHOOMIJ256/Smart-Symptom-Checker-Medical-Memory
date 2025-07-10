@@ -146,6 +146,12 @@
   background: #ff3742;
 }
 
+.nav-menu-right {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+
 /* Main Content */
 .app-main {
   flex: 1;

@@ -57,7 +57,7 @@ export default function PatientHistoryUpload({ user }) {
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+    setLoading(false);
     }
   };
 
@@ -130,9 +130,9 @@ export default function PatientHistoryUpload({ user }) {
           >
             {loading ? 'Processing...' : 'Upload & Process'}
           </button>
-        </form>
+      </form>
 
-        {result && (
+      {result && (
           <div className="result-section">
             <h3>Processing Results</h3>
             <div className="result-card">
@@ -228,7 +228,7 @@ export default function PatientHistoryUpload({ user }) {
               )}
             </div>
           </div>
-        )}
+      )}
       </div>
     </div>
   );

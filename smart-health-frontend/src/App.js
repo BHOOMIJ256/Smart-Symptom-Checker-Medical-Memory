@@ -88,7 +88,7 @@ function App() {
         <div className="nav-brand">
           <h1>🩺 Smart Health AI</h1>
         </div>
-        <div className="nav-menu">
+        <div className="nav-menu nav-menu-right">
           <button 
             className={`nav-button ${currentView === 'dashboard' ? 'active' : ''}`}
             onClick={handleNavigateToDashboard}
@@ -124,12 +124,6 @@ function App() {
             onClick={handleNavigateToSpeechToText}
           >
             Voice Recorder
-          </button>
-        </div>
-        <div className="nav-user">
-          <span className="user-name">Hi, {user.first_name}</span>
-          <button onClick={handleLogout} className="logout-btn">
-            Sign Out
           </button>
         </div>
       </nav>

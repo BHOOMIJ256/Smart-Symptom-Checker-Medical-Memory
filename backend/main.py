@@ -10,7 +10,7 @@ print("GOOGLE_API_KEY", os.getenv("GOOGLE_API_KEY"))
 try:
     from dotenv import load_dotenv
     load_dotenv()
-except ImportError: 
+except ImportError:
     def load_dotenv() -> bool:
         return True
 
@@ -123,7 +123,7 @@ async def upload_patient_history(
                 return await process_image_upload(patient_id, file)
             else:
                 raise HTTPException(status_code=400, detail="Only PDF and image files are supported")
-                
+        
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing patient history: {str(e)}")
 
@@ -131,10 +131,8 @@ async def process_pdf_upload(patient_id: str, file: UploadFile):
     """Process PDF upload."""
     # Process PDF and extract medical information
     medical_data = await pdf_service.process_medical_pdf(file)
-    
     # Store in vector database
     await memory_service.store_patient_history(patient_id, medical_data)
-    
     return {
         "message": "Patient history uploaded successfully",
         "patient_id": patient_id,
@@ -265,9 +263,9 @@ async def convert_speech_to_symptoms(
             # Use the original transcribed text for analysis
             diagnosis = await symptom_checker.analyze_symptoms(
                 symptoms=transcribed_text,
-                patient_history=None,
-                severity_level=SeverityLevel.MEDIUM
-            )
+            patient_history=None,
+            severity_level=SeverityLevel.MEDIUM
+        )
         
         return {
             "transcription": result["transcription"],
@@ -541,6 +539,17 @@ async def convert_speech_to_symptoms_with_user(
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing speech: {str(e)}")
+
+@app.delete("/api/documents/{patient_id}/{document_id}")
+async def delete_user_document(patient_id: str, document_id: str):
+    """Delete a user's document by document_id."""
+    try:
+        await user_service.delete_user_document(patient_id, document_id)
+        return {"message": "Document deleted successfully"}
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error deleting document: {str(e)}")
 
 if __name__ == "__main__":
     uvicorn.run(

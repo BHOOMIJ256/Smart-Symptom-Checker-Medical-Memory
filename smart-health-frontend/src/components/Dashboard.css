@@ -395,4 +395,106 @@
   .summary-number {
     font-size: 24px;
   }
+}
+
+.delete-doc-btn {
+  background: none;
+  border: none;
+  color: #ff3742;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+}
+.delete-doc-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.delete-doc-btn:hover:not(:disabled) {
+  color: #b3001b;
+} 
+
+/* Extra mobile-friendly tweaks */
+@media (max-width: 600px) {
+  .dashboard-header,
+  .dashboard-section,
+  .profile-card {
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 12px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .user-welcome h1 {
+    font-size: 18px;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .action-card {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .documents-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .document-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .document-icon {
+    margin-bottom: 8px;
+    margin-right: 0;
+    font-size: 28px;
+  }
+
+  .delete-doc-btn {
+    font-size: 1.5rem;
+    margin-left: 0;
+    margin-top: 8px;
+    align-self: flex-end;
+  }
+
+  .summary-card {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .summary-number {
+    font-size: 18px;
+  }
+
+  .profile-info {
+    gap: 6px;
+  }
+
+  .info-row {
+    padding: 4px 0;
+    font-size: 13px;
+  }
+}
+
+/* Make sure document cards and quick actions are scrollable horizontally if overflowed */
+@media (max-width: 400px) {
+  .documents-grid,
+  .quick-actions {
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 } 

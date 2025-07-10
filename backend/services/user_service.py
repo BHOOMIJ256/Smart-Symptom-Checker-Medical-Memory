@@ -223,4 +223,25 @@ class UserService:
         users[patient_id] = user_data
         self._save_data(self.users_file, users)
         
-        return UserProfile(**{k: v for k, v in user_data.items() if k != 'password_hash'}) 
+        return UserProfile(**{k: v for k, v in user_data.items() if k != 'password_hash'})
+    
+    async def delete_user_document(self, patient_id: str, document_id: str) -> bool:
+        """Delete a user's document by document_id."""
+        documents = self._load_data(self.documents_file)
+        user_docs = documents.get(patient_id, [])
+        new_docs = [doc for doc in user_docs if doc.get('document_id') != document_id]
+        if len(new_docs) == len(user_docs):
+            raise HTTPException(status_code=404, detail="Document not found")
+        documents[patient_id] = new_docs
+        self._save_data(self.documents_file, documents)
+        # Optionally, delete the file from uploads directory
+        user_upload_dir = f"uploads/{patient_id}"
+        for ext in ['.pdf', '.jpg', '.jpeg', '.png']:
+            file_path = os.path.join(user_upload_dir, f"{document_id}{ext}")
+            if os.path.exists(file_path):
+                try:
+                    os.remove(file_path)
+                except Exception as e:
+                    logger.warning(f"Failed to delete file {file_path}: {e}")
+        logger.info(f"Deleted document {document_id} for patient {patient_id}")
+        return True 

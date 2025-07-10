@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
+import { FaTrash } from 'react-icons/fa';
 
 const Dashboard = ({ user, onLogout, onNavigateToSymptomChecker, onNavigateToUpload, onNavigateToImageAnalysis, onNavigateToSpeechToText }) => {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [deletingDocId, setDeletingDocId] = useState(null);
 
   useEffect(() => {
     if (user?.patient_id) {
@@ -46,6 +48,27 @@ const Dashboard = ({ user, onLogout, onNavigateToSymptomChecker, onNavigateToUpl
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const handleDeleteDocument = async (documentId) => {
+    if (!window.confirm('Are you sure you want to delete this document?')) return;
+    setDeletingDocId(documentId);
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/documents/${user.patient_id}/${documentId}`,
+        { method: 'DELETE' }
+      );
+      if (!res.ok) throw new Error('Failed to delete');
+      setDashboardData((prev) => ({
+        ...prev,
+        recent_documents: prev.recent_documents.filter((doc) => doc.document_id !== documentId),
+        total_documents: prev.total_documents - 1
+      }));
+    } catch (err) {
+      alert('Failed to delete document.');
+    } finally {
+      setDeletingDocId(null);
+    }
   };
 
   if (loading) {
@@ -168,6 +191,14 @@ const Dashboard = ({ user, onLogout, onNavigateToSymptomChecker, onNavigateToUpl
                     </div>
                   )}
                 </div>
+                <button
+                  className="delete-doc-btn"
+                  title="Delete Document"
+                  onClick={() => handleDeleteDocument(doc.document_id)}
+                  disabled={deletingDocId === doc.document_id}
+                >
+                  <FaTrash />
+                </button>
               </div>
             ))}
           </div>
