@@ -91,7 +91,12 @@ async def analyze_symptoms(request: SymptomRequest):
             severity_level=request.severity_level,
             similar_cases=similar_cases
         )
-        
+        # Save diagnosis to user history if patient_id present
+        if request.patient_id:
+            try:
+                await user_service.save_user_diagnosis(request.patient_id, request.symptoms, diagnosis.dict())
+            except Exception as e:
+                logger.warning(f"Failed to save diagnosis for user: {e}")
         return diagnosis
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error analyzing symptoms: {str(e)}")
@@ -475,7 +480,11 @@ async def check_symptoms(
             severity_level=request.severity_level,
             similar_cases=[]  # Will be fetched by the service
         )
-        
+        # Save diagnosis to user history
+        try:
+            await user_service.save_user_diagnosis(patient_id, request.symptoms, response.dict())
+        except Exception as e:
+            logger.warning(f"Failed to save diagnosis for user: {e}")
         return response
         
     except HTTPException:

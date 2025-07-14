@@ -1,0 +1,39 @@
+{
+  "P983B587C": [
+    {
+      "diagnosis_id": "56D2037B",
+      "timestamp": "2025-07-14T20:05:16.215325",
+      "symptoms": "Chest Burn, Acidity ",
+      "result": {
+        "probable_diagnoses": [
+          {
+            "condition": "Gastroesophageal Reflux Disease (GERD)",
+            "confidence": 0.8
+          },
+          {
+            "condition": "Hiatal Hernia",
+            "confidence": 0.2
+          }
+        ],
+        "severity_assessment": "low",
+        "recommended_actions": [
+          "Try over-the-counter antacids like calcium carbonate or magnesium hydroxide.",
+          "Avoid trigger foods such as spicy foods, caffeine, alcohol, chocolate, and citrus fruits.",
+          "Eat smaller, more frequent meals.",
+          "Elevate the head of your bed by 6-8 inches.",
+          "Lose weight if overweight or obese.",
+          "Quit smoking.",
+          "Schedule a follow-up appointment with your doctor if symptoms persist or worsen."
+        ],
+        "suggested_tests": [
+          "None are urgently required at this time.  A physician might suggest upper endoscopy or esophageal pH monitoring if symptoms persist or are severe."
+        ],
+        "urgency_level": "within_days",
+        "confidence_score": 0.7,
+        "disclaimer": "This information is for general knowledge and informational purposes only, and does not constitute medical advice.  This AI is not a substitute for professional medical advice, diagnosis, or treatment.  Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.  Never disregard professional medical advice or delay in seeking it because of something you have read on this AI.",
+        "timestamp": "2025-07-14 20:05:16.214315"
+      },
+      "source": "symptom_checker"
+    }
+  ]
+}

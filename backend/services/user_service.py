@@ -18,6 +18,7 @@ class UserService:
         self.users_file = "data/users.json"
         self.documents_file = "data/documents.json"
         self.sessions_file = "data/sessions.json"
+        self.diagnoses_file = "data/diagnoses.json"  # NEW
         
         # Create data directory if it doesn't exist
         os.makedirs("data", exist_ok=True)
@@ -25,6 +26,10 @@ class UserService:
         
         # Initialize data files
         self._init_data_files()
+        # Initialize diagnoses file if not exists
+        if not os.path.exists(self.diagnoses_file):
+            with open(self.diagnoses_file, 'w') as f:
+                json.dump({}, f)
     
     def _init_data_files(self):
         """Initialize JSON data files if they don't exist."""
@@ -50,7 +55,15 @@ class UserService:
         except Exception as e:
             logger.error(f"Error loading data from {file_path}: {e}")
             return {}
-    
+
+    def _load_diagnoses(self):
+        try:
+            with open(self.diagnoses_file, 'r') as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Error loading diagnoses: {e}")
+            return {}
+
     def _save_data(self, file_path: str, data: dict):
         """Save data to JSON file."""
         try:
@@ -58,6 +71,13 @@ class UserService:
                 json.dump(data, f, indent=2, default=str)
         except Exception as e:
             logger.error(f"Error saving data to {file_path}: {e}")
+
+    def _save_diagnoses(self, data):
+        try:
+            with open(self.diagnoses_file, 'w') as f:
+                json.dump(data, f, indent=2, default=str)
+        except Exception as e:
+            logger.error(f"Error saving diagnoses: {e}")
     
     async def register_user(self, user_data: UserRegistration) -> UserProfile:
         """Register a new user with auto-generated patient ID."""
@@ -81,7 +101,8 @@ class UserService:
             age=user_data.age,
             gender=user_data.gender,
             chronic_conditions=user_data.chronic_conditions or [],
-            created_at=datetime.now()
+            created_at=datetime.now(),
+            last_login=None
         )
         
         # Store user data
@@ -190,6 +211,9 @@ class UserService:
         documents = self._load_data(self.documents_file)
         total_documents = len(documents.get(patient_id, []))
         
+        # Get recent diagnoses
+        recent_diagnoses = await self.get_user_diagnoses(patient_id, limit=5)
+        
         # Create health summary (placeholder for now)
         health_summary = {
             "total_uploads": total_documents,
@@ -202,7 +226,7 @@ class UserService:
             user_info=user_profile,
             total_documents=total_documents,
             recent_documents=recent_documents,
-            recent_diagnoses=[],  # Placeholder for symptom check history
+            recent_diagnoses=recent_diagnoses,  # Now real data
             health_summary=health_summary
         )
     
@@ -245,3 +269,28 @@ class UserService:
                     logger.warning(f"Failed to delete file {file_path}: {e}")
         logger.info(f"Deleted document {document_id} for patient {patient_id}")
         return True 
+
+    async def save_user_diagnosis(self, patient_id: str, symptoms: str, result: dict, source: str = "symptom_checker") -> dict:
+        """Save a user's diagnosis (symptom check) result."""
+        diagnoses = self._load_diagnoses()
+        diagnosis_id = str(uuid.uuid4())[:8].upper()
+        entry = {
+            "diagnosis_id": diagnosis_id,
+            "timestamp": datetime.now().isoformat(),
+            "symptoms": symptoms,
+            "result": result,
+            "source": source
+        }
+        if patient_id not in diagnoses:
+            diagnoses[patient_id] = []
+        diagnoses[patient_id].insert(0, entry)  # Most recent first
+        # Limit to last 10
+        diagnoses[patient_id] = diagnoses[patient_id][:10]
+        self._save_diagnoses(diagnoses)
+        logger.info(f"Diagnosis saved: {diagnosis_id} for patient {patient_id}")
+        return entry
+
+    async def get_user_diagnoses(self, patient_id: str, limit: int = 5) -> list:
+        """Get user's recent diagnoses."""
+        diagnoses = self._load_diagnoses()
+        return diagnoses.get(patient_id, [])[:limit] 
