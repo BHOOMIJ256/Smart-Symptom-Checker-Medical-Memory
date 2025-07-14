@@ -101,7 +101,7 @@ const Dashboard = ({ user, onLogout, onNavigateToSymptomChecker, onNavigateToUpl
       {/* Header */}
       <div className="dashboard-header">
         <div className="user-welcome">
-          <h1>Welcome back, {user?.first_name || 'User'}! 👋</h1>
+          <h1>Welcome back, {user?.first_name || 'User'}!</h1>
           <p>Your Patient ID: <strong>{user?.patient_id}</strong></p>
         </div>
         <div className="header-actions">
