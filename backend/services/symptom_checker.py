@@ -207,16 +207,20 @@ class SymptomCheckerService:
                     detected_categories.append(category)
                     break
         
-        # Add database-based diagnoses
-        if detected_categories and not llm_result.get("probable_diagnoses"):
+        # Always add database-based diagnoses if any category is detected
+        if detected_categories:
+            existing_conditions = set()
+            for diag in llm_result.get("probable_diagnoses", []):
+                existing_conditions.add(diag.get("condition", "").lower())
             for category in detected_categories:
                 conditions = self.symptom_database[category]["conditions"]
                 for condition in conditions[:2]:  # Top 2 conditions per category
-                    llm_result.setdefault("probable_diagnoses", []).append({
-                        "condition": condition,
-                        "confidence": 0.5,
-                        "source": "medical_database"
-                    })
+                    if condition.lower() not in existing_conditions:
+                        llm_result.setdefault("probable_diagnoses", []).append({
+                            "condition": condition,
+                            "confidence": 0.5,
+                            "source": "medical_database"
+                        })
         
         return DiagnosisResponse(
             probable_diagnoses=llm_result.get("probable_diagnoses", []),

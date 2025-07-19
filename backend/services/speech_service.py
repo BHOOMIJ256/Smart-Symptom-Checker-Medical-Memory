@@ -27,7 +27,8 @@ class SpeechToTextService:
             
             # Load Whisper model (will download on first use)
             logger.info("Loading Whisper model...")
-            self.model = whisper.load_model("base", device=device)
+            # Use 'small' model for better accuracy
+            self.model = whisper.load_model("small", device=device)
             logger.info("Whisper model loaded successfully")
         except Exception as e:
             logger.error(f"Failed to load Whisper model: {e}")
@@ -108,7 +109,8 @@ class SpeechToTextService:
             
             # Transcribe audio using Whisper
             logger.info(f"Transcribing audio file: {temp_file_path}")
-            result = self.model.transcribe(temp_file_path)
+            # Set language to 'en' for English, which improves accuracy
+            result = self.model.transcribe(temp_file_path, language="en")
             
             # Handle the result properly
             text_result = result.get("text", "")
@@ -167,7 +169,8 @@ class SpeechToTextService:
                 r"\b(sore throat|throat pain)\b",
                 r"\b(runny nose|stuffy nose|nasal congestion)\b",
                 r"\b(shortness of breath|breathing difficulty)\b",
-                r"\b(wheezing|chest tightness)\b"
+                r"\b(wheezing|chest tightness)\b",
+                r"\b(cold|flu)\b"  # Added cold and flu
             ],
             "gastrointestinal": [
                 r"\b(nausea|nauseous|sick to stomach)\b",

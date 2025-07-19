@@ -134,7 +134,7 @@ async def upload_patient_history(
 
 async def process_pdf_upload(patient_id: str, file: UploadFile):
     """Process PDF upload."""
-    # Process PDF and extract medical information
+        # Process PDF and extract medical information
     medical_data = await pdf_service.process_medical_pdf(file)
     # Store in vector database
     await memory_service.store_patient_history(patient_id, medical_data)
@@ -169,18 +169,18 @@ async def process_image_upload(patient_id: str, file: UploadFile):
     
     # Process the extracted text as if it were a PDF
     medical_data = await pdf_service.process_medical_pdf(pdf_file)
-    
-    # Store in vector database
+        
+        # Store in vector database
     await memory_service.store_patient_history(patient_id, medical_data)
-    
+        
     return {
         "message": "Patient history uploaded successfully (OCR processed)",
-        "patient_id": patient_id,
+            "patient_id": patient_id,
         "extracted_data": medical_data,
         "full_text": medical_data.get("full_text", ""),
         "ocr_result": ocr_result,
         "file_type": "Image"
-    }
+        }
 
 @app.post("/analyze-image")
 async def analyze_medical_image(
@@ -267,7 +267,7 @@ async def convert_speech_to_symptoms(
         if symptoms_data["all_symptoms"]:
             # Use the original transcribed text for analysis
             diagnosis = await symptom_checker.analyze_symptoms(
-                symptoms=transcribed_text,
+            symptoms=transcribed_text,
             patient_history=None,
             severity_level=SeverityLevel.MEDIUM
         )
@@ -441,7 +441,8 @@ async def upload_patient_history_with_user(
             extracted_data=extracted_data,
             full_text=full_text
         )
-        
+        # Also store in memory service for similarity search
+        await memory_service.store_patient_history(patient_id, extracted_data)
         return {
             "message": "File uploaded and processed successfully",
             "patient_id": patient_id,

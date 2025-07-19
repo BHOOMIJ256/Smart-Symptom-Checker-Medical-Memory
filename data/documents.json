@@ -1,3 +1,100 @@
 {
-  "P983B587C": []
+  "P983B587C": [
+    {
+      "document_id": "DE76BEF4E",
+      "patient_id": "P983B587C",
+      "filename": "Medical report.pdf",
+      "file_type": "PDF",
+      "upload_date": "2025-07-19 20:19:46.081287",
+      "file_size": 35954,
+      "extracted_data": {
+        "medical_conditions": [
+          "no known chronic illnesses",
+          "no previous abdominal surgeries",
+          "non-smoker, occasional alcohol use",
+          "suspected acute appendicitis"
+        ],
+        "medications": [
+          "paracetamol (self-administered before visit)"
+        ],
+        "allergies": [],
+        "surgeries": [],
+        "lab_results": [
+          {
+            "test": "Lab Result",
+            "value": "abdominal ultrasound",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "bc with differential",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "urinalysis",
+            "unit": ""
+          }
+        ],
+        "notes": "r. rajat mehta; tycare general hospital",
+        "extraction_confidence": 1.0,
+        "extraction_methods": [
+          "PyMuPDF",
+          "pdfplumber",
+          "enhanced_parsing"
+        ],
+        "full_text": "Patient ID: P789024 \nName: Neha Verma \nAge: 32 \nGender: Female \nDate of Visit: 2024-08-21 \n\nSymptoms: \n- Severe abdominal pain (lower right quadrant) \n- Nausea and vomiting \n- Low-grade fever (100.2\u00b0F) \n- Loss of appetite \n\nMedical History: \n- No known chronic illnesses \n- No previous abdominal surgeries \n- Non-smoker, occasional alcohol use \n\nMedications: \n- Paracetamol (self-administered before visit) \n\nPreliminary Diagnosis: \n- Suspected Acute Appendicitis \n\nRecommended Tests: \n- Abdominal Ultrasound \n- CBC with differential \n- Urinalysis \n\nPhysician Notes: \nPain is localized to the lower right abdomen and worsens with movement. Rebound tenderness \nnoted on palpation. High suspicion of acute appendicitis\u2014advised imaging and potential \nsurgical consultation. \n\nSigned, \nDr. Rajat Mehta \nCityCare General Hospital"
+      },
+      "full_text": "Patient ID: P789024 \nName: Neha Verma \nAge: 32 \nGender: Female \nDate of Visit: 2024-08-21 \n\nSymptoms: \n- Severe abdominal pain (lower right quadrant) \n- Nausea and vomiting \n- Low-grade fever (100.2\u00b0F) \n- Loss of appetite \n\nMedical History: \n- No known chronic illnesses \n- No previous abdominal surgeries \n- Non-smoker, occasional alcohol use \n\nMedications: \n- Paracetamol (self-administered before visit) \n\nPreliminary Diagnosis: \n- Suspected Acute Appendicitis \n\nRecommended Tests: \n- Abdominal Ultrasound \n- CBC with differential \n- Urinalysis \n\nPhysician Notes: \nPain is localized to the lower right abdomen and worsens with movement. Rebound tenderness \nnoted on palpation. High suspicion of acute appendicitis\u2014advised imaging and potential \nsurgical consultation. \n\nSigned, \nDr. Rajat Mehta \nCityCare General Hospital",
+      "confidence_score": 1.0
+    },
+    {
+      "document_id": "DF8ACD4FD",
+      "patient_id": "P983B587C",
+      "filename": "Medical report (1).pdf",
+      "file_type": "PDF",
+      "upload_date": "2025-07-19 20:22:52.617859",
+      "file_size": 46188,
+      "extracted_data": {
+        "medical_conditions": [
+          "no known chronic illnesses",
+          "no previous abdominal surgeries",
+          "non-smoker, occasional alcohol use",
+          "suspected acute appendicitis"
+        ],
+        "medications": [
+          "paracetamol (self-administered before visit)"
+        ],
+        "allergies": [],
+        "surgeries": [],
+        "lab_results": [
+          {
+            "test": "Lab Result",
+            "value": "abdominal ultrasound",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "bc with differential",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "urinalysis",
+            "unit": ""
+          }
+        ],
+        "notes": "r. rajat mehta; tycare general hospital",
+        "extraction_confidence": 1.0,
+        "extraction_methods": [
+          "PyMuPDF",
+          "pdfplumber",
+          "enhanced_parsing"
+        ],
+        "full_text": "Patient ID: P983B587C \nName: Bhoomi Jain \nAge: 20 \nGender: Female \nDate of Visit: 2024-08-21 \n\nSymptoms: \n- Severe abdominal pain (lower right quadrant) \n- Nausea and vomiting \n- Low-grade fever (100.2\u00b0F) \n- Loss of appetite \n\nMedical History: \n- No known chronic illnesses \n- No previous abdominal surgeries \n- Non-smoker, occasional alcohol use \n\nMedications: \n- Paracetamol (self-administered before visit) \n\nPreliminary Diagnosis: \n- Suspected Acute Appendicitis \n\nRecommended Tests: \n- Abdominal Ultrasound \n- CBC with differential \n- Urinalysis \n\nPhysician Notes: \nPain is localized to the lower right abdomen and worsens with movement. Rebound tenderness \nnoted on palpation. High suspicion of acute appendicitis\u2014advised imaging and potential \nsurgical consultation. \n\nSigned, \nDr. Rajat Mehta \nCityCare General Hospital"
+      },
+      "full_text": "Patient ID: P983B587C \nName: Bhoomi Jain \nAge: 20 \nGender: Female \nDate of Visit: 2024-08-21 \n\nSymptoms: \n- Severe abdominal pain (lower right quadrant) \n- Nausea and vomiting \n- Low-grade fever (100.2\u00b0F) \n- Loss of appetite \n\nMedical History: \n- No known chronic illnesses \n- No previous abdominal surgeries \n- Non-smoker, occasional alcohol use \n\nMedications: \n- Paracetamol (self-administered before visit) \n\nPreliminary Diagnosis: \n- Suspected Acute Appendicitis \n\nRecommended Tests: \n- Abdominal Ultrasound \n- CBC with differential \n- Urinalysis \n\nPhysician Notes: \nPain is localized to the lower right abdomen and worsens with movement. Rebound tenderness \nnoted on palpation. High suspicion of acute appendicitis\u2014advised imaging and potential \nsurgical consultation. \n\nSigned, \nDr. Rajat Mehta \nCityCare General Hospital",
+      "confidence_score": 1.0
+    }
+  ]
 }

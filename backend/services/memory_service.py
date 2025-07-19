@@ -3,6 +3,7 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 from typing import Any, Dict, Optional, List
 from models.symptom_models import PatientHistory, ImageAnalysisResult, MedicalCase
+import logging
 
 class MedicalMemoryService:
     """Service for storing and retrieving patient medical memory (history, images, etc.) with FAISS vector search."""
@@ -19,6 +20,7 @@ class MedicalMemoryService:
         self.faiss_index = faiss.IndexFlatL2(self.faiss_dim)
         self.case_id_to_index: Dict[int, str] = {}  # Map FAISS index to case_id
         self._faiss_next_idx = 0
+        self.logger = logging.getLogger("services.memory_service")
 
     async def store_patient_history(self, patient_id: str, medical_data: Any) -> None:
         """Store patient history (PDF-extracted or structured data) and add to FAISS."""
@@ -27,6 +29,7 @@ class MedicalMemoryService:
             # Minimal conversion; expand as needed
             medical_data = PatientHistory(patient_id=patient_id, **medical_data)
         self._patient_histories[patient_id] = medical_data
+        self.logger.info(f"[store_patient_history] Parsed PatientHistory for {patient_id}: {medical_data}")
         # Store as a medical case for vector search
         await self.store_medical_case_from_history(medical_data)
 
@@ -62,6 +65,7 @@ class MedicalMemoryService:
             embedding=embedding.tolist(),
             metadata={"patient_id": history.patient_id}
         )
+        self.logger.info(f"[store_medical_case_from_history] FAISS index size: {self.faiss_index.ntotal}")
 
     def _history_to_text(self, history: PatientHistory) -> str:
         """Convert patient history to a text string for embedding."""
@@ -80,7 +84,9 @@ class MedicalMemoryService:
 
     async def search_similar_cases(self, query: str, top_k: int = 3) -> List[MedicalCase]:
         """Search for similar medical cases using FAISS."""
+        self.logger.info(f"[search_similar_cases] Query: {query}")
         if self.faiss_index.ntotal == 0:
+            self.logger.info("[search_similar_cases] FAISS index is empty.")
             return []
         query_vec = self._embed_text(query)
         D, I = self.faiss_index.search(np.array([query_vec]).astype('float32'), top_k)
@@ -91,4 +97,5 @@ class MedicalMemoryService:
                 case = self._medical_cases.get(case_id)
                 if case:
                     results.append(case)
+        self.logger.info(f"[search_similar_cases] Results found: {len(results)}")
         return results 
