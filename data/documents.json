@@ -95,6 +95,56 @@
       },
       "full_text": "Patient ID: P983B587C \nName: Bhoomi Jain \nAge: 20 \nGender: Female \nDate of Visit: 2024-08-21 \n\nSymptoms: \n- Severe abdominal pain (lower right quadrant) \n- Nausea and vomiting \n- Low-grade fever (100.2\u00b0F) \n- Loss of appetite \n\nMedical History: \n- No known chronic illnesses \n- No previous abdominal surgeries \n- Non-smoker, occasional alcohol use \n\nMedications: \n- Paracetamol (self-administered before visit) \n\nPreliminary Diagnosis: \n- Suspected Acute Appendicitis \n\nRecommended Tests: \n- Abdominal Ultrasound \n- CBC with differential \n- Urinalysis \n\nPhysician Notes: \nPain is localized to the lower right abdomen and worsens with movement. Rebound tenderness \nnoted on palpation. High suspicion of acute appendicitis\u2014advised imaging and potential \nsurgical consultation. \n\nSigned, \nDr. Rajat Mehta \nCityCare General Hospital",
       "confidence_score": 1.0
+    },
+    {
+      "document_id": "D82BD4765",
+      "patient_id": "P983B587C",
+      "filename": "Untitled document (1).pdf",
+      "file_type": "PDF",
+      "upload_date": "2025-07-21 21:58:19.894217",
+      "file_size": 37063,
+      "extracted_data": {
+        "medical_conditions": [
+          "hypertension (diagnosed 2017)",
+          "type 2 diabetes (diagnosed 2019)",
+          "smoker (quit in 2020)",
+          "suspected bronchitis",
+          "rule out early-stage copd"
+        ],
+        "medications": [
+          "Metformin metformin 500mg (twice daily)",
+          "Amlodipine amlodipine 5mg (once daily)"
+        ],
+        "allergies": [],
+        "surgeries": [],
+        "lab_results": [
+          {
+            "test": "Lab Result",
+            "value": "hest x-ray",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "bc",
+            "unit": ""
+          },
+          {
+            "test": "Lab Result",
+            "value": "pulmonary function test (pft)",
+            "unit": ""
+          }
+        ],
+        "notes": "maging to rule out chronic lung condition.; r. ananya desai",
+        "extraction_confidence": 1.0,
+        "extraction_methods": [
+          "PyMuPDF",
+          "pdfplumber",
+          "enhanced_parsing"
+        ],
+        "full_text": "Patient ID: P123456 \nName: Rahul Sharma \nAge: 45 \nGender: Male \nDate of Visit: 2024-11-12 \n\nSymptoms: \n- Persistent cough \n- Shortness of breath \n- Mild fever (99.8\u00b0F) \n- Fatigue \n\nMedical History: \n- Hypertension (diagnosed 2017) \n- Type 2 Diabetes (diagnosed 2019) \n- Smoker (quit in 2020) \n\nMedications: \n- Metformin 500mg (twice daily) \n- Amlodipine 5mg (once daily) \n\nPreliminary Diagnosis: \n- Suspected Bronchitis \n- Rule out early-stage COPD \n\nRecommended Tests: \n- Chest X-ray \n- CBC \n- Pulmonary function test (PFT) \n\nPhysician Notes: \nPatient reports increased coughing over the past 2 weeks. Breathlessness on light exertion. No \nrecent infections. Vitals within normal range except mild temperature. Suggested pulmonary \nimaging to rule out chronic lung condition. \n\nSigned, \nDr. Ananya Desai \nApollo Multispecialty Clinic"
+      },
+      "full_text": "Patient ID: P123456 \nName: Rahul Sharma \nAge: 45 \nGender: Male \nDate of Visit: 2024-11-12 \n\nSymptoms: \n- Persistent cough \n- Shortness of breath \n- Mild fever (99.8\u00b0F) \n- Fatigue \n\nMedical History: \n- Hypertension (diagnosed 2017) \n- Type 2 Diabetes (diagnosed 2019) \n- Smoker (quit in 2020) \n\nMedications: \n- Metformin 500mg (twice daily) \n- Amlodipine 5mg (once daily) \n\nPreliminary Diagnosis: \n- Suspected Bronchitis \n- Rule out early-stage COPD \n\nRecommended Tests: \n- Chest X-ray \n- CBC \n- Pulmonary function test (PFT) \n\nPhysician Notes: \nPatient reports increased coughing over the past 2 weeks. Breathlessness on light exertion. No \nrecent infections. Vitals within normal range except mild temperature. Suggested pulmonary \nimaging to rule out chronic lung condition. \n\nSigned, \nDr. Ananya Desai \nApollo Multispecialty Clinic",
+      "confidence_score": 1.0
     }
   ]
 }

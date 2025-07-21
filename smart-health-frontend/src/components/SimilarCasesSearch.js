@@ -34,9 +34,34 @@ export default function SimilarCasesSearch() {
       {results && (
         <Box sx={{ mt: 3 }}>
           <Typography variant="subtitle1">Results:</Typography>
-          <pre style={{ background: '#f5f5f5', padding: 10, borderRadius: 4 }}>
-            {JSON.stringify(results, null, 2)}
-          </pre>
+          {Array.isArray(results) && results.length > 0 ? (
+            results.map((caseItem, idx) => (
+              <Paper key={caseItem.case_id || idx} sx={{ p: 2, mb: 2, background: '#f9f9f9' }} elevation={2}>
+                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+                  Case ID: {caseItem.case_id}
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 1 }}>
+                  <strong>Symptoms:</strong> {caseItem.symptoms || 'N/A'}
+                </Typography>
+                {caseItem.diagnosis && (
+                  <Typography variant="body2"><strong>Diagnosis:</strong> {caseItem.diagnosis}</Typography>
+                )}
+                {caseItem.treatment && (
+                  <Typography variant="body2"><strong>Treatment:</strong> {caseItem.treatment}</Typography>
+                )}
+                {caseItem.outcome && (
+                  <Typography variant="body2"><strong>Outcome:</strong> {caseItem.outcome}</Typography>
+                )}
+                <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'gray' }}>
+                  Created At: {caseItem.created_at ? new Date(caseItem.created_at).toLocaleString() : 'N/A'}
+                </Typography>
+              </Paper>
+            ))
+          ) : results.error ? (
+            <Typography color="error">{results.error}</Typography>
+          ) : (
+            <Typography>No similar cases found.</Typography>
+          )}
         </Box>
       )}
     </Paper>
