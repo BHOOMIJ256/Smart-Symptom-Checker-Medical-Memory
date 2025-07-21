@@ -5,51 +5,51 @@ AI-powered Symptom Checker & Medical Memory Platform
 Multimodal input, intelligent diagnosis, and seamless patient history management.
 
 
-✨ Features
+# ✨ Features
 
-Symptom Analysis: AI-powered, context-aware symptom checking using LLMs (OpenAI GPT-4, Google Gemini, etc.)
-Medical Memory: Securely store and retrieve patient medical history using vector databases (FAISS).
-Multimodal Input: Upload and analyze text, speech (voice-to-text), images, and PDF medical records.
-Intelligent Diagnosis: Get probable diagnoses with confidence scores and actionable recommendations.
-Document Management: Upload, view, and delete medical documents with a user-friendly dashboard.
-Similar Case Search: Instantly find past cases similar to a query using semantic search (vector similarity).
-Modern UI: Responsive, mobile-friendly React frontend.
-RESTful API: FastAPI backend with clear, documented endpoints.
+1. **Symptom Analysis**: AI-powered, context-aware symptom checking using LLMs (OpenAI GPT-4, Google Gemini, etc).
+
+2. **Medical Memory**: Securely store and retrieve patient medical history using vector databases (FAISS).
+
+3. **Multimodal Input**: Upload and analyze text, speech (voice-to-text), images, and PDF medical records.
+
+4. **Intelligent Diagnosis**: Get probable diagnoses with confidence scores and actionable recommendations.
+
+5. **Document Management**: Upload, view, and delete medical documents with a user-friendly dashboard.
+
+6. **Similar Case Search**: Instantly find past cases similar to a query using semantic search (vector similarity).
+
+7. **Modern UI**:  Responsive, mobile-friendly React frontend.
+
+8. **RESTful API**: FastAPI backend with clear, documented endpoints.
 
 
-🏗️ System Architecture
+# 🏗️ System Architecture
 
-image.png
+<img width="915" height="284" alt="image" src="https://github.com/user-attachments/assets/2c18dcbc-898e-4385-9a3b-d8e75e4523b4" />
+
+<img width="905" height="271" alt="image" src="https://github.com/user-attachments/assets/ba3699d1-445e-42e5-a60d-21af59e91d6e" />
+
+
 
 ---
 
-## 🚀 Quickstart
+# 🚀 Quickstart
 
-flowchart TD
-    A["React Frontend (User Interface)"]
-    B["FastAPI Backend (API & Logic)"]
-    C["AI Services (LLMs, Embeddings, OCR, Whisper)"]
-    D["Vector DB (FAISS)"]
-    E["File Storage (Uploads)"]
-    F["JSON Data Storage (User, Docs, Diagnoses)"]
+## 1. Backend Setup
 
-    A -- "REST API" --> B
-    B -- "LLMs, Embeddings" --> C
-    B -- "Vector Search" --> D
-    B -- "File Uploads" --> E
-    B -- "User/Doc Data" --> F
+*  **Python Version:** 3.10 or 3.11 recommended (not 3.13)
+
+*  Create & Activate Virtual Environment
+
+  **   git clone https://github.com/yourusername/smart-health-ai.git
+  
+  **   cd smart-health-ai
+
+* **Install Dependencies**:
 
 
-2. Backend Setup
-* Python Version: 3.10 or 3.11 recommended (not 3.13)
-
-* Create & Activate Virtual Environmen
-
-git clone https://github.com/yourusername/smart-health-ai.git
-cd smart-health-ai
-
-* Install Dependencies:
-  python -m venv venv
+   python -m venv venv
   source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 *Environment Variables:
@@ -60,7 +60,7 @@ Copy .env.example to .env and set your OpenAI/HuggingFace keys if needed.
 
 The backend will start at http://localhost:8000.
 
-3. Frontend Setup
+2. Frontend Setup
   python run_backend.py
 
 The frontend will run at http://localhost:3000.
