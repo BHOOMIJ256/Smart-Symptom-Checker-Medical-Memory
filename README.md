@@ -176,9 +176,6 @@ Expand test coverage for reliability.
 
 
 ## Demo Video
-<video width="100%" controls>
-  <source src="https://github.com/BHOOMIJ256/Smart-Symptom-Checker-Medical-Memory/blob/main/Demo_comp.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 
+![Demo Video](https://github.com/BHOOMIJ256/Smart-Symptom-Checker-Medical-Memory/blob/main/Demo_comp.mp4)
