@@ -175,7 +175,10 @@ OAuth2, JWT authentication, and encrypted storage.
 Expand test coverage for reliability.
 
 
-## Demo Video
+## Project Demo
 
+Check out the full workflow of Vidyut Sanchay in action:
 
-![Demo Video](https://github.com/BHOOMIJ256/Smart-Symptom-Checker-Medical-Memory/blob/main/Demo_comp.mp4)
+[![Watch the Demo](https://img.youtube.com/vi/MTTa2p-k8sk/maxresdefault.jpg)](https://youtu.be/MTTa2p-k8sk)
+
+> *Click the image above to watch the video.*
